@@ -45,20 +45,6 @@ function NavBar() {
                 <img src={logoMobile} className={classes.logoMobile}/> 
                 <Typography variant="h6" className={classes.menuItem}>
                    About
-                </Typography>
-                <Typography variant="h6" className={classes.menuItem}>
-                    Competitions
-                </Typography>
-                <Typography variant="h6" className={classes.menuItem}>
-                    How-To
-                </Typography>
-                <Typography variant="h6" className={classes.menuItem}>
-                    Learn 
-                </Typography>
-                <Typography variant="h6" className={classes.menuItem}>
-                    Contact Us 
-                </Typography>
-                <CustomBtn txt="Register"/>
             </Toolbar>
     )
 }
