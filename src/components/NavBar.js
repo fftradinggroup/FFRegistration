@@ -45,6 +45,7 @@ function NavBar() {
                 <img src={logoMobile} className={classes.logoMobile}/> 
                 <Typography variant="h6" className={classes.menuItem}>
                    About
+                </Typography>
             </Toolbar>
     )
 }
