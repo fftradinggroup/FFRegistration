@@ -50,6 +50,12 @@ const styles = makeStyles({
     margin: "auto",
     textAlign: "center"
   },
+  about:{
+    marginTop: "255px",
+    ['@media (max-width:780px)']: { 
+      marginTop: "190px"
+      }
+  },
   bigSpace: {
     marginTop: "5rem"
   },
@@ -133,15 +139,20 @@ function App() {
     <div className="App">
       <ThemeProvider theme={theme}>
         <NavBar/>
-        <div id="about" className={classes.wrapper}>
+        <div id="about" className={`${classes.wrapper} ${classes.about}`}>
           <Typography variant="h4" className={classes.bigSpace} color="primary">
              Fincial Freedom Trading and Education
           </Typography>
           <Typography variant="h5" className={classes.littleSpace} color="primary">
-            Here you will confirm your seat into the upcoming trading competitions.
+            With the Financial Freedom Trading Group, you'll have the opportunity to learn about trading through friendly paper trading competitions. The competitions may consist of stocks, cryptocurrency, and/or ETF's. Each competition is hosted on the Wealth Base app where you will be able to ask questions from within the competition club room.
           </Typography>
+          <div className={`${classes.grid} ${classes.bigSpace}`}>
+          <Grid icon={<SecurityIcon style={{fill: "#4360A6", height:"125", width:"125"}}/>}  title="Secure" btnTitle="Show me More" />
+          <Grid icon={<EventNoteIcon style={{fill: "#449A76", height:"125", width:"125"}}/>} title="Reliable" btnTitle="Show me More"/>
+          <Grid icon={<TrendingUpIcon style={{fill: "#D05B2D", height:"125", width:"125"}}/>}  title="Performant" btnTitle="Show me More"/>
         </div>
-        <div className={`${classes.grid} ${classes.bigSpace}`}>
+        </div>
+        <div id="register" className={`${classes.grid} ${classes.bigSpace}`}>
             {paidFor ? (
               <div>
               <h1>Congrats! you have secured entry to the Financial Freedom Trading Competition</h1>
@@ -154,6 +165,7 @@ function App() {
                  </h1>
                   <span><ConfirmationNumberOutlinedIcon style={{fill: "#4360A6", height:"125", width:"125"}}></ConfirmationNumberOutlinedIcon></span>
                   <h2>Join for ${competitions.entry_fee}</h2>
+                  <h3>Start: - End:</h3>
                   <div 
                      ref={paypalRef}
                      id="paypal-button-container"
@@ -161,6 +173,23 @@ function App() {
                  </div>
             )}
         </div>
+        <div id="faqs" className={classes.wrapper}>
+        <Typography variant="h4" className={classes.littleSpace} color="primary">
+          FAQ's
+          </Typography>          
+          <Typography variant="h5" className={classes.littleSpace} color="primary">
+          What is Paper Trading? $100K What is Wealth Base? Do I have to provide my personal information to join?
+          Register now to recieve an invitation to the next available competition. Contest registration closes 2 hours after the competition begins. Anyone not registered will be removed from the club room.
+          </Typography>
+          </div>        
+          <div id="contact" className={classes.wrapper}>
+          <Typography variant="h4" className={classes.littleSpace} color="primary">
+           Contact US
+          </Typography>
+          <Typography variant="h5" className={classes.littleSpace} color="primary">
+          Financial Freedom Trading Group does not provide financial advice. Please join the telegram group at t.me/joinchat/Zf9_ltls2eFjNTgx to stay connected with club members outside of the competitions. For other inquiries please send an email to.
+          </Typography>          
+          </div>  
         <div className={classes.bigSpace}>
           <Footer/>
         </div>
