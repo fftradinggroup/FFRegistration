@@ -1,9 +1,11 @@
-import { createMuiTheme, ThemeProvider, makeStyles } from '@material-ui/core/styles';
+import { Theme, createMuiTheme, ThemeProvider, makeStyles } from '@material-ui/core/styles';
 import {Typography} from '@material-ui/core'; 
 import NavBar from './components/NavBar'
 import Grid from './components/Grid'
 import Footer from './components/Footer'
 import trading from './trading.jpg'
+import FAQAccordion from './components/Accordian'
+import ContactUs from './components/ContactUs'
 import './App.css';
 import React, { useState, useRef, useEffect } from "react";
 import ReactDOM from "react-dom";
@@ -141,7 +143,7 @@ function App() {
         <NavBar/>
         <div id="about" className={`${classes.wrapper} ${classes.about}`}>
           <Typography variant="h4" className={classes.bigSpace} color="primary">
-             Fincial Freedom Trading and Education
+             Financial Freedom Trading and Education
           </Typography>
           <Typography variant="h5" className={classes.littleSpace} color="primary">
             With the Financial Freedom Trading Group, you'll have the opportunity to learn about trading through friendly paper trading competitions. The competitions may consist of stocks, cryptocurrency, and/or ETF's. Each competition is hosted on the Wealth Base app where you will be able to ask questions from within the competition club room.
@@ -178,17 +180,14 @@ function App() {
           FAQ's
           </Typography>          
           <Typography variant="h5" className={classes.littleSpace} color="primary">
-          What is Paper Trading? $100K What is Wealth Base? Do I have to provide my personal information to join?
-          Register now to recieve an invitation to the next available competition. Contest registration closes 2 hours after the competition begins. Anyone not registered will be removed from the club room.
+            <FAQAccordion/>
           </Typography>
           </div>        
           <div id="contact" className={classes.wrapper}>
           <Typography variant="h4" className={classes.littleSpace} color="primary">
            Contact US
           </Typography>
-          <Typography variant="h5" className={classes.littleSpace} color="primary">
-          Financial Freedom Trading Group does not provide financial advice. Please join the telegram group at t.me/joinchat/Zf9_ltls2eFjNTgx to stay connected with club members outside of the competitions. For other inquiries please send an email to.
-          </Typography>          
+         <ContactUs/>     
           </div>  
         <div className={classes.bigSpace}>
           <Footer/>
