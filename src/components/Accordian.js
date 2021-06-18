@@ -37,37 +37,47 @@ export default function FAQAccordion() {
 
   return (
     <div className={classes.root}>
+
+
+<Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          <Typography className={classes.heading}>What is 100K Trading Club? </Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography className={classes.answer}>100k Trading Club is a group of investors gathered together on social media to educate new investors on trading within the different markets, as well as providing opportunities to compete in simulated trading competitions with friends and club members. Each competition is hosted on the Wealthbase app.
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography className={classes.heading}>What is Paper Trading? </Typography>
+          <Typography className={classes.heading}>What is Simulated Trading/Paper Trading? </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography className={classes.answer}>
-          $100K
-          </Typography>
+          <Typography className={classes.answer}>Simulated trading allows investors to practice or buying securities. Compete with friends in virtual stock market trading games while learning investing strategies and discovering new investments. Using paper money, investors have the opportunity to particapate in the markets without spending their own money.</Typography>
         </AccordionDetails>
       </Accordion>
-
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel2a-content"
           id="panel2a-header"
         >
-          <Typography className={classes.heading}>What is Wealth Base? </Typography>
+          <Typography className={classes.heading}>What is Wealthbase? </Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography className={classes.answer}>
-            Do I have to provide my personal information to join?
-          Register now to recieve an invitation to the next available competition. Contest registration closes 2 hours after the competition begins. Anyone not registered will be removed from the club room.
+            Wealthbase is "a social investing app" allowing users to play fantasy trading games with friends. With each game, the users net worth will start at $100,000. Wealthbase can help consumers learn how to invest and build wealth using simulated trading and investing. For more questions about Wealthbase, click here to visit their FAQs.
           </Typography>
         </AccordionDetails>
       </Accordion>
-
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -78,17 +88,10 @@ export default function FAQAccordion() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography className={classes.answer}> 
-          Register now to recieve an invitation to the next available competition. Contest registration closes 2 hours after the competition begins. Anyone not registered will be removed from the club room.
-          </Typography>
+          To join the 100k Trading Club, you only need to follow us on social media and download the Wealthbase app. There is no club membership fee or any personal membership required to join. However, to participate in rewarding paper trading competitions, there will be a fee associated to enter the specific competition. 
+            </Typography>
         </AccordionDetails>
       </Accordion>
-
-      <Typography variant="h4" className={` ${classes.littleSpace} ${classes.disclaimer} `}>  
-          Register now to recieve an invitation to the next available competition. Contest registration closes 2 hours after the competition begins. Anyone not registered will be removed from the club room.
-          </Typography>
-
-
-
     </div>
   );
 }

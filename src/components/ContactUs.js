@@ -69,9 +69,11 @@ const useStyles = makeStyles((theme) => ({
     
     return (
       <div className={classes.root}>
-     
+    <Typography variant="h4" className={` ${classes.littleSpace} ${classes.disclaimer} `}>  
+     To stay up-to date on the latest competition news and updates, please join the telegram group by <a href="https://t.me/joinchat/Zf9_ltls2eFjNTgx" target="_blank">clicking here</a>. For other inquiries, please fill out the form below and you will be contacted shortly after.
+   </Typography>    
 
-     <form className={`${classes.root} ${classes.contactForm} ${classes.littleSpace}`} noValidate autoComplete="off">
+     <form className={`${classes.root} ${classes.contactForm} ${classes.littleSpace}`} noValidate autoComplete="off" action="/test/">
       <div>
       <div className={classes.field}>
         <TextField
@@ -100,14 +102,14 @@ const useStyles = makeStyles((theme) => ({
         />
         </div>
       </div>
-      <CustomBtn txt="Submit"/>
+      <CustomBtn type="submit" txt="Submit"/>
     </form>
-
-     <Typography variant="h4" className={` ${classes.littleSpace} ${classes.disclaimer} `}>  
-     Financial Freedom Trading Group does not provide financial advice. Please join the telegram group at t.me/joinchat/Zf9_ltls2eFjNTgx to stay connected with club members outside of the competitions. For other inquiries please send an email to.
-   </Typography>     
-  
-  
+   <Typography variant="h4" className={` ${classes.littleSpace} ${classes.disclaimer} `}>  
+     This club does not provide any financial advice and is not operated by a financial advisor or planner. All inquires should be competition related.
+   </Typography>
+   <Typography variant="h4" className={` ${classes.disclaimer} `}>  
+     100K Trading Club is not in any partnership or agreement with Wealth Base or any of their affiliates.
+   </Typography>              
       </div>
     );
   }

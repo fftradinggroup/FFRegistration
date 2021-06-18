@@ -48,7 +48,7 @@ const theme = createMuiTheme({
 
 const styles = makeStyles({
   wrapper: {
-    width: "65%",
+    width: "85%",
     margin: "auto",
     textAlign: "center"
   },
@@ -70,6 +70,12 @@ const styles = makeStyles({
     alignItems: "center",
     flexWrap: "wrap", 
   },
+  disclaimer:{
+    fontWeight:"normal",
+    color:"#333",
+    fontSize:"0.9375rem",
+    lineHeight: "1.2"
+},
 })
 
 function App() {
@@ -102,7 +108,8 @@ function App() {
   }
 
   useEffect(() => {
-    // get competition data
+     /*
+      // get competition data
       getCompetitions();
      // PayPal Script
         window.paypal
@@ -132,7 +139,7 @@ function App() {
           }
         })
         .render(paypalRef.current);
-    
+    */
   
   },[]);
   let paypalRef = React.useRef(null);
@@ -143,18 +150,24 @@ function App() {
         <NavBar/>
         <div id="about" className={`${classes.wrapper} ${classes.about}`}>
           <Typography variant="h4" className={classes.bigSpace} color="primary">
-             Financial Freedom Trading and Education
+             100K Trading Club
           </Typography>
-          <Typography variant="h5" className={classes.littleSpace} color="primary">
-            With the Financial Freedom Trading Group, you'll have the opportunity to learn about trading through friendly paper trading competitions. The competitions may consist of stocks, cryptocurrency, and/or ETF's. Each competition is hosted on the Wealth Base app where you will be able to ask questions from within the competition club room.
+          <Typography variant="h6" className={classes.littleSpace} color="primary">
+            You've been invited to join a paper trading club and competition on the Wealth Base app! You'll have the opportunity to do simulated trading through friendly and rewarding competitions with new and experienced investors. The competitions may consist of stocks, cryptocurrency, and/or ETF's.
           </Typography>
-          <div className={`${classes.grid} ${classes.bigSpace}`}>
+          {/*<div className={`${classes.grid} ${classes.bigSpace}`}>
           <Grid icon={<SecurityIcon style={{fill: "#4360A6", height:"125", width:"125"}}/>}  title="Secure" btnTitle="Show me More" />
           <Grid icon={<EventNoteIcon style={{fill: "#449A76", height:"125", width:"125"}}/>} title="Reliable" btnTitle="Show me More"/>
           <Grid icon={<TrendingUpIcon style={{fill: "#D05B2D", height:"125", width:"125"}}/>}  title="Performant" btnTitle="Show me More"/>
         </div>
+    */}
         </div>
         <div id="register" className={`${classes.grid} ${classes.bigSpace}`}>
+        <div className={`${classes.wrapper}`}>
+        <Typography variant="h4" className={` ${classes.littleSpace} ${classes.disclaimer} `}>  
+          Register now to recieve an invitation to the next available competition held by our club. 
+          </Typography>
+          </div>
             {paidFor ? (
               <div>
               <h1>Congrats! you have secured entry to the Financial Freedom Trading Competition</h1>
