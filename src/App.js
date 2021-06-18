@@ -1,5 +1,6 @@
 import { Theme, createMuiTheme, ThemeProvider, makeStyles } from '@material-ui/core/styles';
 import {Typography} from '@material-ui/core'; 
+import {BottomNavigation, BottomNavigationAction} from '@material-ui/core';
 import NavBar from './components/NavBar'
 import Grid from './components/Grid'
 import Footer from './components/Footer'
@@ -11,14 +12,16 @@ import React, { useState, useRef, useEffect } from "react";
 import ReactDOM from "react-dom";
 import firebase from "./firebase";
 //changes to imports 
-import SecurityIcon from '@material-ui/icons/Security';
-import EventNoteIcon from '@material-ui/icons/EventNote';
-import TrendingUpIcon from '@material-ui/icons/TrendingUp';
-import ImportExportIcon from '@material-ui/icons/ImportExport';
-import ComputerIcon from '@material-ui/icons/Computer';
-import HttpIcon from '@material-ui/icons/Http';
+import HowToRegTwoToneIcon from '@material-ui/icons/HowToRegTwoTone';
+import ContactSupportTwoToneIcon from '@material-ui/icons/ContactSupportTwoTone';
+import LiveHelpTwoToneIcon from '@material-ui/icons/LiveHelpTwoTone';
 import ConfirmationNumberIcon from '@material-ui/icons/ConfirmationNumber';
 import ConfirmationNumberOutlinedIcon from '@material-ui/icons/ConfirmationNumberOutlined';
+import FacebookIcon from '@material-ui/icons/Facebook';
+import TwitterIcon from '@material-ui/icons/Twitter';
+import InstagramIcon from '@material-ui/icons/Instagram';
+import TelegramIcon from '@material-ui/icons/Telegram';
+import YouTubeIcon from '@material-ui/icons/YouTube';
 require('dotenv').config();
 
 const theme = createMuiTheme({
@@ -76,6 +79,16 @@ const styles = makeStyles({
     fontSize:"0.9375rem",
     lineHeight: "1.2"
 },
+ faqs:{
+  listStyleType: "none",
+  textAlign: "left",
+ },
+ social:{
+  ['@media (max-width:780px)']: { 
+    zIndex: "1",
+    position: "relative",
+    }
+},
 })
 
 function App() {
@@ -108,7 +121,6 @@ function App() {
   }
 
   useEffect(() => {
-     /*
       // get competition data
       getCompetitions();
      // PayPal Script
@@ -139,8 +151,6 @@ function App() {
           }
         })
         .render(paypalRef.current);
-    */
-  
   },[]);
   let paypalRef = React.useRef(null);
   const classes = styles(); 
@@ -153,7 +163,7 @@ function App() {
              100K Trading Club
           </Typography>
           <Typography variant="h6" className={classes.littleSpace} color="primary">
-            You've been invited to join a paper trading club and competition on the Wealth Base app! You'll have the opportunity to do simulated trading through friendly and rewarding competitions with new and experienced investors. The competitions may consist of stocks, cryptocurrency, and/or ETF's.
+            You've been invited to join a paper trading club competition on the Wealthbase app! You'll have the opportunity to do simulated trading through friendly and rewarding competitions with new and experienced investors. The competitions may consist of stocks, cryptocurrency, and/or ETF's.
           </Typography>
           {/*<div className={`${classes.grid} ${classes.bigSpace}`}>
           <Grid icon={<SecurityIcon style={{fill: "#4360A6", height:"125", width:"125"}}/>}  title="Secure" btnTitle="Show me More" />
@@ -161,6 +171,19 @@ function App() {
           <Grid icon={<TrendingUpIcon style={{fill: "#D05B2D", height:"125", width:"125"}}/>}  title="Performant" btnTitle="Show me More"/>
         </div>
     */}
+        </div>
+        <div id="howitworks" className={`${classes.wrapper}`}>
+        <Typography variant="h4" className={classes.littleSpace} color="primary">
+        <span><HowToRegTwoToneIcon  style={{fill: "#3b5998"}} /></span> How It Works
+          </Typography>
+          <Typography variant="h6" className={` ${classes.littleSpace} ${classes.disclaimer} `}> 
+        <ul className={`${classes.faqs}`}>
+          <li>1. Create a Wealthbase account.</li>
+          <li>2. Register for an upcoming competition on this site.</li>
+          <li>3. Recieve the competition link at checkout and via email.</li>
+          <li>4. Join the competition and wait until it starts.</li>
+        </ul>
+        </Typography>        
         </div>
         <div id="register" className={`${classes.grid} ${classes.bigSpace}`}>
         <div className={`${classes.wrapper}`}>
@@ -190,7 +213,7 @@ function App() {
         </div>
         <div id="faqs" className={classes.wrapper}>
         <Typography variant="h4" className={classes.littleSpace} color="primary">
-          FAQ's
+         <span><LiveHelpTwoToneIcon  style={{fill: "#3b5998"}} /></span> FAQ's
           </Typography>          
           <Typography variant="h5" className={classes.littleSpace} color="primary">
             <FAQAccordion/>
@@ -198,11 +221,18 @@ function App() {
           </div>        
           <div id="contact" className={classes.wrapper}>
           <Typography variant="h4" className={classes.littleSpace} color="primary">
-           Contact US
+          <span><ContactSupportTwoToneIcon  style={{fill: "#3b5998"}} /></span> Contact US
           </Typography>
          <ContactUs/>     
           </div>  
         <div className={classes.bigSpace}>
+        <BottomNavigation className={classes.social}>
+          <BottomNavigationAction href="https://t.me/joinchat/Zf9_ltls2eFjNTgx" target="_blank" label="Telegram" value="Telegram" icon={<TelegramIcon  style={{fill: "#3b5998"}} />}/>
+          <BottomNavigationAction label="Twitter" value="favorites" icon={<FacebookIcon  style={{fill: "#1DA1F2"}}/>} />
+          <BottomNavigationAction label="Twitter" value="favorites" icon={<TwitterIcon  style={{fill: "#1DA1F2"}}/>} />
+          <BottomNavigationAction label="Instagram" value="nearby" icon={<InstagramIcon  style={{fill: " #C13584"}}/>} />
+          <BottomNavigationAction label="YouTube" value="folder" icon={<YouTubeIcon  style={{fill: "#c4302b"}}/>} />
+        </BottomNavigation>
           <Footer/>
         </div>
       </ThemeProvider>
