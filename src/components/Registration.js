@@ -111,10 +111,11 @@ const useStyles = makeStyles((theme) => ({
             });
           },
           onApprove: async (data,actions) => {
-            const order = await actions.order.capture();
+            const order = await actions.order.get();
             setPaidFor(true);
-            console.log(actions.order.get());
-            return actions.order.capture();
+            console.log("order");
+            console.log(order);
+            //return actions.order.capture();
             // redirect to site
           },
           onError: err => {
