@@ -113,7 +113,7 @@ const useStyles = makeStyles((theme) => ({
           onApprove: async (data,actions) => {
             const order = await actions.order.capture();
             setPaidFor(true);
-            console.log(data);
+            console.log(actions.order.get());
             return actions.order.capture();
             // redirect to site
           },
