@@ -14,7 +14,7 @@ const styles = makeStyles({
           display: "flex",
           position: "fixed",
           bottom: "0",
-          zIndex:"0",
+          zIndex:"101",
           width: "100%",
           borderTop: "solid 1px #000"
          }

@@ -86,13 +86,19 @@ const useStyles = makeStyles((theme) => ({
     };  
 
     const createLead = () => {
-      const newsletterRef = firebase.database().ref("lead");
-      const lead = {
-        newsletteremail
-      };
-      newsletterRef.push(lead);
-      setNewsletteremail("");     
-      setConfmessage(true);
+      const newsletterRef = firebase.firestore().collection("lead");
+      newsletterRef.add({
+        "email": newsletteremail,
+      })
+      .then(function(docRef) {
+        setNewsletteremail("");  
+        setConfmessage(true);
+      })
+      .catch(function(error) {
+        confmessage = "Error sending message";
+        setConfmessage(true);
+        console.error("Error sending message: ", error);
+      });
     }
     
     return (

@@ -1,5 +1,6 @@
 import React from 'react';
 import firebase from "./../firebase";
+import "firebase/firestore";
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
@@ -101,17 +102,25 @@ const useStyles = makeStyles((theme) => ({
     };  
 
     const createInquiry = () => {
-      const inquiryRef = firebase.database().ref("inquiry");
-      const inquiry = {
-        name,
-        email,
-        details
-      };
-      inquiryRef.push(inquiry);
-      setName("");
-      setEmail("");        
-      setDetails("");        
-      setConfmessage(true);
+      const inquiryRef = firebase.firestore().collection("inquiry");
+      
+      
+      inquiryRef.add({
+        "name":name,
+        "email": email,
+        "details": details
+      })
+      .then(function(docRef) {
+        setName("");
+        setEmail("");        
+        setDetails("");        
+        setConfmessage(true);
+      })
+      .catch(function(error) {
+        confmessage = "Error sending message";
+        setConfmessage(true);
+        console.error("Error sending message: ", error);
+      });
     }
     
     return (

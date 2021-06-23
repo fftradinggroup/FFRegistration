@@ -61,6 +61,7 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
+
   export default function Registration() {
     const classes = useStyles();
     const [competitions, setCompetions] = useState([]);
@@ -69,8 +70,9 @@ const useStyles = makeStyles((theme) => ({
     const [loaded, setLoaded] = useState(false)
     const firebaseRef = firebase.firestore().collection("competitions");
     let product = {
+      name: "Competitions",
       description: "...",
-      price:"0.01",
+      price:"10",
       id:""
     };
     let order = {};
@@ -84,12 +86,42 @@ const useStyles = makeStyles((theme) => ({
           items.push(doc.data());
         });
         */
+        product.name = comp.name;
         product.description = comp.desc; //items[0].desc;
         product.price = comp.entry_fee;//items[0].entry_fee;
         product.id = comp.id;
+        console.log(comp);
         setCompetions(comp);
         setLoading(false);
         setLoaded(true);
+       // PayPal Script
+        window.paypal
+        .Buttons({
+          createOrder: (data, actions) => {
+            return actions.order.create({
+              purchase_units:[
+                {
+                  description: product.name,
+                  amount: {
+                    currency_code: "USD",
+                    value: product.price
+                  }
+                }
+              ]
+            });
+          },
+          onApprove: async (data,actions) => {
+            const order = await actions.order.capture();
+            setPaidFor(true);
+            console.log(data);
+            return actions.order.capture();
+            // redirect to site
+          },
+          onError: err => {
+            console.log(err);
+          }
+        })
+        .render(paypalRef.current);
       });
       } catch (e){
         console.log(e);
@@ -97,48 +129,11 @@ const useStyles = makeStyles((theme) => ({
         setLoaded(true); 
     }
   
-
-  function setPayment(){
-      const createOrder =  (data, actions) => {
-        return actions.order.create({
-          purchase_units:[
-            {
-              description: product.description,
-              amount: {
-                currency_code: "USD",
-                value: product.price
-              }
-            }
-          ]
-        });
-      };
-
-      const onApprove = async (data,actions) => {
-        const order = await actions.order.capture();
-        // Add a new document in collection "registrations" with ID 'LA'
-         //const res = await db.collection('registrations').doc(product.id).set(data);
-        setPaidFor(true);
-        console.log(data);
-        return actions.order.capture();
-        // redirect to site
-      };
-
-
-      const onError = (err) => {
-        console.log(err);
-      };
-
-    };
-
     useEffect(() => {
         // get competition data
         getCompetitions();
-       // PayPal Script
-       setPayment();
-    },[]);
-
-    
-    let PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
+      },[]);
+    const paypalRef = React.useRef(null);
 
     return (  
         <div id="register" className="wrapper bigSpace">
@@ -167,11 +162,10 @@ const useStyles = makeStyles((theme) => ({
                  <span><ConfirmationNumberOutlinedIcon style={{fill: "#4360A6", height:"125", width:"125"}}></ConfirmationNumberOutlinedIcon></span>
                  <h2>Join for ${competitions.entry_fee}</h2>
                  <h3>Start: - End:</h3>
-                 <PayPalButton
-        createOrder={(data, actions) => this.createOrder(data, actions)}
-        onApprove={(data, actions) => this.onApprove(data, actions)}
-        onError={(err) => this.onError(err)}
-      />
+                 <div 
+                     ref={paypalRef}
+                     id="paypal-button-container"
+                     />
                 </div>
                   ) : (
                     <Newsletter/>
