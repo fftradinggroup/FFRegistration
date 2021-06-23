@@ -2,7 +2,6 @@ import React from 'react';
 import firebase from "./../firebase";
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import { FormControl } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import CustomBtn from './CustomBtn';
 import ContactMailTwoToneIcon from '@material-ui/icons/ContactMailTwoTone';
@@ -106,9 +105,7 @@ const useStyles = makeStyles((theme) => ({
       const inquiry = {
         name,
         email,
-        details,
-        date: false,
-        time: false,
+        details
       };
       inquiryRef.push(inquiry);
       setName("");
@@ -131,7 +128,6 @@ const useStyles = makeStyles((theme) => ({
           id="name"
           label="Full Name"
           placeholder="Full Name"
-          required="required"
           variant="outlined"
           onChange={handleChange}
           value={name}
@@ -143,7 +139,6 @@ const useStyles = makeStyles((theme) => ({
           type="email"
           label="Email"
           placeholder="Email"
-          required="required"
           variant="outlined"
           onChange={handleChange}
           value={email}
@@ -154,7 +149,6 @@ const useStyles = makeStyles((theme) => ({
           id="details"
           label="Details"
           placeholder="Details"
-          required="required"
           multiline
           rows={6}
           variant="outlined"

@@ -88,7 +88,7 @@ const useStyles = makeStyles((theme) => ({
     const createLead = () => {
       const newsletterRef = firebase.database().ref("lead");
       const lead = {
-        newsletteremail,
+        newsletteremail
       };
       newsletterRef.push(lead);
       setNewsletteremail("");     
@@ -109,7 +109,6 @@ const useStyles = makeStyles((theme) => ({
           type="email"
           label="Email"
           placeholder="Email"
-          required="required"
           variant="outlined"
           onChange={handleChange}
           value={newsletteremail}

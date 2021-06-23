@@ -59,7 +59,7 @@ export default function FAQAccordion() {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography  variant="h5" color="" className={classes.heading}>What is 100K Trading Club? </Typography>
+          <Typography  variant="h5" className={classes.heading}>What is 100K Trading Club? </Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography  variant="h6" color="inherit" className={classes.answer}>100k Trading Club is a group of investors gathered together on social media to educate new investors on trading within the different markets, as well as providing opportunities to compete in simulated trading competitions with friends and club members. Each competition is hosted on the Wealthbase app.
@@ -72,7 +72,7 @@ export default function FAQAccordion() {
           aria-controls="panel2a-content"
           id="panel2a-header"
         >
-          <Typography  variant="h5"  color="" className={classes.heading}>What is Simulated Trading/Paper Trading? </Typography>
+          <Typography  variant="h5" className={classes.heading}>What is Simulated Trading/Paper Trading? </Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography  variant="h6" color="inherit" className={classes.answer}>Simulated trading allows investors to practice or buying securities. Compete with friends in virtual stock market trading games while learning investing strategies and discovering new investments. Using paper money, investors have the opportunity to particapate in the markets without spending their own money.</Typography>
@@ -84,7 +84,7 @@ export default function FAQAccordion() {
           aria-controls="panel3a-content"
           id="panel3a-header"
         >
-          <Typography  variant="h5" color="" className={classes.heading}>What is Wealthbase? </Typography>
+          <Typography  variant="h5"className={classes.heading}>What is Wealthbase? </Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography variant="h6" color="inherit" className={classes.answer}>
@@ -98,7 +98,7 @@ export default function FAQAccordion() {
           aria-controls="panel4a-content"
           id="panel4a-header"
         >
-          <Typography  variant="h5" color="" className={classes.heading}>Do I have to provide my personal information to join? </Typography>
+          <Typography  variant="h5" className={classes.heading}>Do I have to provide my personal information to join? </Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography  variant="h6" color="inherit" className={classes.answer}> 

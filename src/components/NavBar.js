@@ -84,7 +84,7 @@ const Navbar = () => {
                 <Typography variant="h6" className={classes.menuItem}>
                 <Link  to="contact" spy={true} smooth={true} offset={-180}>Contact Us</Link>
                 </Typography>
-                <Link  to="register" spy={true} smooth={true} offset={-180} ><CustomBtn link="#register" txt="Register"/></Link>
+                <Link  to="register" spy={true} smooth={true} offset={-180} ><CustomBtn txt="Register"/></Link>
             </>
           )}
         </Toolbar>

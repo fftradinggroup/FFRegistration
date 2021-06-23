@@ -46,7 +46,6 @@ const useStyles = makeStyles({
       <Typography variant="h2" className={classes.littleSpace} color="primary">
       <span><HowToRegTwoToneIcon  style={{fill: "#3b5998"}} /></span> How It Works
         </Typography>
-        <Typography variant="h6" className={` ${classes.littleSpace} ${classes.disclaimer} `}> 
         <Typography variant="h6" className="littleSpace content" color="inherit">
       <ul className={`${classes.faqs}`}>
         <li className={`${classes.details}`}>1. <span className={`${classes.detailsItem}`}>Create a <a className="link" rel="noopener" href="https://www.wealthbase.com" target="_blank">Wealthbase</a> account.</span></li>
@@ -54,7 +53,6 @@ const useStyles = makeStyles({
         <li className={`${classes.details}`}>3. <span className={`${classes.detailsItem}`}>Receive the competition link at checkout and via email.</span></li>
         <li className={`${classes.details}`}>4. <span className={`${classes.detailsItem}`}>Join the competition and wait until it starts.</span></li>
       </ul>
-      </Typography>
       </Typography>
       </div>
     );

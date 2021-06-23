@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import ReactDOM from "react-dom";
 import firebase from "./../firebase";
 import Grid from './Grid'
@@ -24,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
         '& .MuiFormControl-root': {
               width: '100%',
            }
-     
       },
     heading: {
       fontSize: theme.typography.pxToRem(15),
@@ -99,48 +98,47 @@ const useStyles = makeStyles((theme) => ({
     }
   
 
+  function setPayment(){
+      const createOrder =  (data, actions) => {
+        return actions.order.create({
+          purchase_units:[
+            {
+              description: product.description,
+              amount: {
+                currency_code: "USD",
+                value: product.price
+              }
+            }
+          ]
+        });
+      };
+
+      const onApprove = async (data,actions) => {
+        const order = await actions.order.capture();
+        // Add a new document in collection "registrations" with ID 'LA'
+         //const res = await db.collection('registrations').doc(product.id).set(data);
+        setPaidFor(true);
+        console.log(data);
+        return actions.order.capture();
+        // redirect to site
+      };
+
+
+      const onError = (err) => {
+        console.log(err);
+      };
+
+    };
+
     useEffect(() => {
         // get competition data
         getCompetitions();
        // PayPal Script
-       try{
-          window.paypal
-          .Buttons({
-            createOrder: (data, actions) => {
-              return actions.order.create({
-                purchase_units:[
-                  {
-                    description: product.description,
-                    amount: {
-                      currency_code: "USD",
-                      value: product.price
-                    },
-                    soft_descriptor: "Competition"
-                  }
-                ]
-              });
-            },
-            onApprove: async (data,actions) => {
-              const order = await actions.order.capture();
-              // Add a new document in collection "registrations" with ID 'LA'
-               //const res = await db.collection('registrations').doc(product.id).set(data);
-              setPaidFor(true);
-              console.log(data);
-              return actions.order.capture();
-              // redirect to site
-            },
-            onError: err => {
-              console.log(err);
-            }
-          })
-          .render(paypalRef.current);
-        } catch (e){
-          console.log(e);
-        }
+       setPayment();
     },[]);
 
     
-    let paypalRef = React.useRef(null);
+    let PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
 
     return (  
         <div id="register" className="wrapper bigSpace">
@@ -169,10 +167,11 @@ const useStyles = makeStyles((theme) => ({
                  <span><ConfirmationNumberOutlinedIcon style={{fill: "#4360A6", height:"125", width:"125"}}></ConfirmationNumberOutlinedIcon></span>
                  <h2>Join for ${competitions.entry_fee}</h2>
                  <h3>Start: - End:</h3>
-                 <div 
-                    ref={paypalRef}
-                    id="paypal-button-container"
-                    />
+                 <PayPalButton
+        createOrder={(data, actions) => this.createOrder(data, actions)}
+        onApprove={(data, actions) => this.onApprove(data, actions)}
+        onError={(err) => this.onError(err)}
+      />
                 </div>
                   ) : (
                     <Newsletter/>

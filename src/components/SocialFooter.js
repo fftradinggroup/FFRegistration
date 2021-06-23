@@ -56,11 +56,11 @@ const useStyles = makeStyles({
     return (
         <div className={classes.bigSpace}>
         <BottomNavigation className={classes.social}>
-          <BottomNavigationAction rel="noopener" href="https://t.me/joinchat/Zf9_ltls2eFjNTgx" target="_blank" label="Telegram" value="Telegram" icon={<TelegramIcon  style={{fill: "#3b5998"}} />}/>
-          <BottomNavigationAction label="Twitter" value="favorites" icon={<FacebookIcon  style={{fill: "#1DA1F2"}}/>} />
-          <BottomNavigationAction label="Twitter" value="favorites" icon={<TwitterIcon  style={{fill: "#1DA1F2"}}/>} />
-          <BottomNavigationAction label="Instagram" value="nearby" icon={<InstagramIcon  style={{fill: " #C13584"}}/>} />
-          <BottomNavigationAction label="YouTube" value="folder" icon={<YouTubeIcon  style={{fill: "#c4302b"}}/>} />
+          <BottomNavigationAction rel="noopener" href="https://t.me/joinchat/Zf9_ltls2eFjNTgx" target="_blank" value="Telegram" icon={<TelegramIcon  style={{fill: "#3b5998"}} />}/>
+          <BottomNavigationAction value="Facebook" icon={<FacebookIcon  style={{fill: "#1DA1F2"}}/>} />
+          <BottomNavigationAction value="Twitter" icon={<TwitterIcon  style={{fill: "#1DA1F2"}}/>} />
+          <BottomNavigationAction value="Instagram" icon={<InstagramIcon  style={{fill: " #C13584"}}/>} />
+          <BottomNavigationAction value="YouTube" icon={<YouTubeIcon  style={{fill: "#c4302b"}}/>} />
         </BottomNavigation>
           <Footer/>
         </div>
