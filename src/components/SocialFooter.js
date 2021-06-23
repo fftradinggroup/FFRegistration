@@ -45,7 +45,7 @@ const useStyles = makeStyles({
  },
  social:{
   ['@media (max-width:780px)']: { 
-    zIndex: "1",
+    zIndex: "102",
     position: "relative",
     }
 },
