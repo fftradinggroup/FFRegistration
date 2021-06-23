@@ -27,7 +27,7 @@ const StyledButton = withStyles({
 
 function CustomBtn(props) {
     return (
-        <StyledButton variant="contained" type={props.type} href={props.link}>{props.txt}</StyledButton>
+        <StyledButton variant="contained" type={props.type} style={props.style} href={props.link} onClick={props.onClick}>{props.txt}</StyledButton>
     )
 }
 

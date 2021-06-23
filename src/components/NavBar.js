@@ -1,14 +1,9 @@
-import React, { useState, Component } from 'react';
+import React from 'react';
 import {
   AppBar,
   makeStyles,
-  Tabs,
   Toolbar,
-  Tab,
   Typography,
-  Button,
-  Menu,
-  MenuItem,
   useMediaQuery,
   useTheme,
 } from '@material-ui/core';
@@ -16,8 +11,6 @@ import {Link} from 'react-scroll';
 import DrawerComponent from './DrawerComponent';
 import CustomBtn from './CustomBtn';
 import logo from '../logo.png';
-import logoMobile from '../logoMobile.png';
-import logoMobile1 from '../logoMobile1.png';
 
 const styles = makeStyles({
     bar:{
@@ -26,15 +19,20 @@ const styles = makeStyles({
            flexDirection: "column"
           }
     },
+    headerNav:{
+      borderBottom: "solid 1px black",
+    },
     logo: {
+        marginTop:"10px",
         width:'46%',
         float:'left',
+        paddingBottom: "3px",
         ['@media (max-width:780px)']: { 
            display: "none"
            }
     },
     logoMobile:{
-        width: "100%", 
+        width: "60%", 
         display: "none", 
         ['@media (max-width:780px)']: { 
             display: "inline-block"
@@ -44,6 +42,7 @@ const styles = makeStyles({
         color: "rgba(0, 0, 0, 0.87)",
         cursor: "pointer", 
         flexGrow: 1,
+        margin: "0px 10px",
         "&:hover": {
             color:  "#4f25c8"
         },
@@ -59,12 +58,14 @@ const Navbar = () => {
   
   return (
     <>
-      <AppBar elevation={0}>
+      <AppBar className={classes.headerNav} elevation={0}>
         <Toolbar position="sticky" color="rgba(0, 0, 0, 0.87)" className={classes.bar}>
+        <Link  to="about" spy={true} smooth={true} offset={-180} >
           <Typography>
-          <img src={logoMobile1} className={classes.logo}/> 
-          <img src={logoMobile} className={classes.logoMobile}/> 
+          <img src={logo} alt="Diamond Laurel Logo" className={classes.logo}/> 
+          <img src={logo} alt="Diamond Laurel Logo" className={classes.logoMobile}/> 
           </Typography>
+          </Link>
           {isMatch ? (
             <>
               <DrawerComponent />

@@ -36,3 +36,65 @@
     transform: rotate(360deg);
   }
 }
+
+.wrapper{
+  width: 85%;
+  margin: auto;
+  text-align: center;
+}
+
+h6.content, h2.content{
+  text-align:left;
+}
+
+.about{
+  margin-top: 100px;
+}
+
+.bigSpace{
+  margin-top: 5rem;
+}
+
+.littleSpace{
+  margin-top: 2.5rem!important;
+}
+
+.grid{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.disclaimer{
+  font-weight:normal;
+  color:#333;
+  font-size:0.9375rem;
+  line-height: 1.2;
+}
+
+.faqs{
+list-style-type: none;
+text-align: left;
+}
+
+.link{
+    color: #4f25c8;
+    font-weight:bold;
+    text-decoration:none;
+}
+
+.link:hover{
+  color:#000;
+}
+
+@media (max-width:780px) {
+  .about{
+      margin-top: 100px;
+  }
+  .social{
+      z-index: 1;
+      position: relative;
+    }
+
+}

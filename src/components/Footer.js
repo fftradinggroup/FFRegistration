@@ -1,6 +1,6 @@
 import React from 'react'
-import {BottomNavigation, BottomNavigationAction, makeStyles} from '@material-ui/core';import {Link} from 'react-scroll';
-import TelegramIcon from '@material-ui/icons/Telegram';
+import {BottomNavigation, BottomNavigationAction, makeStyles} from '@material-ui/core';
+import {Link} from 'react-scroll';
 import HomeIcon from '@material-ui/icons/Home';
 import SportsEsportsIcon from '@material-ui/icons/SportsEsports';
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
@@ -16,6 +16,7 @@ const styles = makeStyles({
           bottom: "0",
           zIndex:"0",
           width: "100%",
+          borderTop: "solid 1px #000"
          }
   },
 })

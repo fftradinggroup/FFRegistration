@@ -1,9 +1,12 @@
 import React from 'react';
+import firebase from "./../firebase";
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { FormControl } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import CustomBtn from './CustomBtn';
+import ContactMailTwoToneIcon from '@material-ui/icons/ContactMailTwoTone';
+import './../App.css';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -19,6 +22,9 @@ const useStyles = makeStyles((theme) => ({
             },
         '& .MuiFormControl-root': {
               width: '100%',
+           },
+           '& .MuiInputLabel-outlined': {
+              zIndex: '0',
            }
      
       },
@@ -56,61 +62,125 @@ const useStyles = makeStyles((theme) => ({
      marginBottom: "10px",
      width: "100%"
     },
+    submit:{
+     display: "inline-flex"
+    },
+    submitMsg:{
+      width: "100%",
+      marginLeft: "15px",
+      lineHeight: "3",
+    },
+    submitMsgComplete:{
+     color: "#5f90bd",
+     fontWeight: "bold"
+    },
   }));
 
   export default function ContactUs() {
     const classes = useStyles();
  
-    const [value, setValue] = React.useState('Controlled');
+    const [name, setName] = React.useState('');
+    const [email, setEmail] = React.useState('');
+    const [details, setDetails] = React.useState('');
+    const [confmessage, setConfmessage] = React.useState(false);
   
     const handleChange = (event) => {
-      setValue(event.target.value);
+      console.log(event);
+      if (event.target.id == 'name'){
+        setName(event.target.value);
+        setConfmessage(false);
+      }
+      if (event.target.id == 'email'){
+        // set email validation check here
+        setEmail(event.target.value);   
+        setConfmessage(false);     
+      }
+      if (event.target.id == 'details'){
+        setDetails(event.target.value); 
+        setConfmessage(false);       
+      }            
     };  
+
+    const createInquiry = () => {
+      const inquiryRef = firebase.database().ref("inquiry");
+      const inquiry = {
+        name,
+        email,
+        details,
+        date: false,
+        time: false,
+      };
+      inquiryRef.push(inquiry);
+      setName("");
+      setEmail("");        
+      setDetails("");        
+      setConfmessage(true);
+    }
     
     return (
+      <div id="contact" className="wrapper">
+      <Typography variant="h2" className={classes.littleSpace} color="primary">
+      <span><ContactMailTwoToneIcon  style={{fill: "#3b5998"}} /></span> Contact Us</Typography>    
       <div className={classes.root}>
-    <Typography variant="h4" className={` ${classes.littleSpace} ${classes.disclaimer} `}>  
-     To stay up-to date on the latest competition news and updates, please join the telegram group by <a href="https://t.me/joinchat/Zf9_ltls2eFjNTgx" target="_blank">clicking here</a>. For other inquiries, please fill out the form below and you will be contacted shortly after.
+      <Typography variant="h6" className="disclaimer littleSpace content" color="inherit">
+     To stay up-to date on the latest competition news and updates, please join the telegram group by <a rel="noopener" className="link" href="https://t.me/joinchat/Zf9_ltls2eFjNTgx" target="_blank">clicking here</a>. For other inquiries, please fill out the form below and you will be contacted shortly after.
    </Typography>    
-
-     <form className={`${classes.root} ${classes.contactForm} ${classes.littleSpace}`} noValidate autoComplete="off" action="/test/">
-      <div>
+      <div className={classes.contactForm}>
       <div className={classes.field}>
         <TextField
-          id="outlined-textarea"
+          id="name"
           label="Full Name"
           placeholder="Full Name"
+          required="required"
           variant="outlined"
+          onChange={handleChange}
+          value={name}
         />
         </div>  
       <div className={classes.field}>
         <TextField
-          id="outlined-textarea"
+          id="email"
+          type="email"
           label="Email"
           placeholder="Email"
+          required="required"
           variant="outlined"
+          onChange={handleChange}
+          value={email}
         />
         </div>  
       <div className={classes.field}>
         <TextField
-          id="outlined-multiline-static"
+          id="details"
           label="Details"
           placeholder="Details"
+          required="required"
           multiline
           rows={6}
           variant="outlined"
+          onChange={handleChange}
+          value={details}
         />
         </div>
+        <div className={classes.submit}>
+        <CustomBtn rel="noopener" type="submit" txt="Submit" onClick={createInquiry}/>
+      {confmessage ? (
+        <span className={`${classes.submitMsg} ${classes.submitMsgComplete}`}>Your message has been sent. Thank You!</span>
+          ) : (
+        <span className={`${classes.submitMsg}`}>Click Submit to send message.</span>
+      )}
       </div>
-      <CustomBtn type="submit" txt="Submit"/>
-    </form>
+      </div>
+
+  
    <Typography variant="h4" className={` ${classes.littleSpace} ${classes.disclaimer} `}>  
-     This club does not provide any financial advice and is not operated by a financial advisor or planner. All inquires should be competition related.
+     This group does not provide any financial advice and is not operated by a financial advisor or planner. All inquires should be competition related.
    </Typography>
    <Typography variant="h4" className={` ${classes.disclaimer} `}>  
-     100K Trading Club is not in any partnership or agreement with Wealth Base or any of their affiliates.
+     100K Trading Club is not in any partnership or agreement with Wealthbase or any of their affiliates.
    </Typography>              
       </div>
+      </div> 
     );
   }
 
