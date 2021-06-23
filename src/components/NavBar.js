@@ -16,7 +16,8 @@ const styles = makeStyles({
     bar:{
         backgroundColor: "#fff",
         ['@media (max-width:780px)']: { 
-           flexDirection: "column"
+           flexDirection: "column",
+           display:"none",
           }
     },
     headerNav:{

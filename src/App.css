@@ -90,7 +90,7 @@ text-align: left;
 
 @media (max-width:780px) {
   .about{
-      margin-top: 100px;
+      margin-top: 50px;
   }
   .social{
       z-index: 1;

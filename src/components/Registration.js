@@ -140,9 +140,13 @@ const useStyles = makeStyles((theme) => ({
         <div id="register" className="wrapper bigSpace">
         <div className={`${classes.wrapper}`}>
         { !loading && loaded ? (
-        <Typography variant="h5" className={` ${classes.littleSpace}`}>  
-          Register now to recieve an invitation to the next available competition held by our club. 
-          </Typography>
+                (paidFor ? (
+                  <span></span>
+              ):( 
+                <Typography variant="h5" className={` ${classes.littleSpace}`}>  
+                Register now to recieve an invitation to the next available competition held by our club. 
+                </Typography>
+              ))
         ) : (
           <Typography variant="h5" className={` ${classes.littleSpace}`}>  
           There are no availabe competitons at the moment. 
