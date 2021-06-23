@@ -103,8 +103,6 @@ const useStyles = makeStyles((theme) => ({
 
     const createInquiry = () => {
       const inquiryRef = firebase.firestore().collection("inquiry");
-      
-      
       inquiryRef.add({
         "name":name,
         "email": email,
@@ -170,7 +168,7 @@ const useStyles = makeStyles((theme) => ({
       {confmessage ? (
         <span className={`${classes.submitMsg} ${classes.submitMsgComplete}`}>Your message has been sent. Thank You!</span>
           ) : (
-        <span className={`${classes.submitMsg}`}>Click Submit to send message.</span>
+        <span className={`${classes.submitMsg}`}>Click submit to send message.</span>
       )}
       </div>
       </div>
