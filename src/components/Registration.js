@@ -113,11 +113,12 @@ const useStyles = makeStyles((theme) => ({
           },
           onApprove: async (data,actions) => {
             const order = await actions.order.get();
-            createRegistration(order);
+            createRegistration(true, order);
             setPaidFor(true);
             return actions.order.get();
           },
           onError: err => {
+            createRegistration(false, err);
             console.log(err);
           }
         })
@@ -129,29 +130,31 @@ const useStyles = makeStyles((theme) => ({
         setLoaded(true); 
     }
   
-    const createRegistration = (reg) => {
+    const createRegistration = (complete, reg) => {
       const registrationRef = firebase.firestore().collection(process.env.REACT_APP_FIREBASE_REGISTRATIONREF);
-      registrationRef.add({
-        "order_id": reg["id"],
-        "intent": reg["intent"], 
-        "status": reg["status"], 
-        "create_time": reg["create_time"],
-        "email_address": reg["payer"].email,
-        "payer_id": reg["payer"].id,
-        "value": product.price,
-        "description": product.description,
-        "full_name": reg["name"].fullname,
-        "competition": product.name
-      })
+      (complete) ? (
+        registrationRef.add({
+          "order_id": reg["id"],
+          "intent": reg["intent"], 
+          "status": reg["status"], 
+          "create_time": reg["create_time"],
+          "email_address": reg["payer"].email,
+          "payer_id": reg["payer"].id,
+          "value": product.price,
+          "description": product.description,
+          "full_name": reg["name"].fullname,
+          "competition": product.name
+        })    
+      ):(
+        registrationRef.add({
+          "error": reg,
+          })
+      )
       .then(function(docRef) {
         setConfmessage(true);
                     // return orderid
       })
       .catch(function(error) {
-        registrationRef.add({
-          "error": error,
-        });
-        setConfmessage(false);
         console.error("Error: ", error);
       });
     }
