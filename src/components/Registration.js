@@ -3,6 +3,7 @@ import Typography from '@material-ui/core/Typography';
 import React, { useState, useRef, useEffect } from "react";
 import ReactDOM from "react-dom";
 import firebase from "./../firebase";
+import Grid from './Grid';
 import CustomBtn from './CustomBtn';
 import './../App.css';
 import ConfirmationNumberIcon from '@material-ui/icons/ConfirmationNumber';
@@ -98,7 +99,11 @@ const useStyles = makeStyles((theme) => ({
        // PayPal Script
         window.paypal
         .Buttons({
-          
+          style: {
+            layout:  'vertical',
+            color:   'blue',
+            shape:   'rect',
+          },
           createOrder: (data, actions) => {
             return actions.order.create({
               purchase_units:[
