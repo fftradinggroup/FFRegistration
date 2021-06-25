@@ -130,9 +130,10 @@ const useStyles = makeStyles((theme) => ({
         setLoaded(true); 
     }
   
-    const createRegistration = (complete, reg) => {
+    const createRegistration = (status, reg) => {
+      console.log("registration =" , status );
       const registrationRef = firebase.firestore().collection(process.env.REACT_APP_FIREBASE_REGISTRATIONREF);
-      (complete) ? (
+      (status) ? (
         registrationRef.add({
           "order_id": reg["id"],
           "intent": reg["intent"], 
