@@ -86,7 +86,7 @@ const useStyles = makeStyles((theme) => ({
     };  
 
     const createLead = () => {
-      const newsletterRef = firebase.firestore().collection("lead");
+      const newsletterRef = firebase.firestore().collection(process.env.REACT_APP_FIREBASE_NEWSLETTERREF);
       newsletterRef.add({
         "email": newsletteremail,
       })

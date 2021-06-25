@@ -102,7 +102,7 @@ const useStyles = makeStyles((theme) => ({
     };  
 
     const createInquiry = () => {
-      const inquiryRef = firebase.firestore().collection("inquiry");
+      const inquiryRef = firebase.firestore().collection(process.env.REACT_APP_FIREBASE_INQUIRYREF);
       inquiryRef.add({
         "name":name,
         "email": email,
@@ -127,7 +127,7 @@ const useStyles = makeStyles((theme) => ({
       <span><ContactMailTwoToneIcon  style={{fill: "#3b5998"}} /></span> Contact Us</Typography>    
       <div className={classes.root}>
       <Typography variant="h6" className="disclaimer littleSpace content" color="inherit">
-     To stay up-to date on the latest competition news and updates, please join the telegram group by <a rel="noopener" className="link" href="https://t.me/joinchat/Zf9_ltls2eFjNTgx" target="_blank">clicking here</a>. For other inquiries, please fill out the form below and you will be contacted shortly after.
+     To stay up-to date on the latest competition news and updates, please join the telegram group by <a rel="noopener" className="link" href="https://t.me/joinchat/Zf9_ltls2eFjNTgx" target="_blank">clicking here</a>. For other inquiries, please fill out the form below and you will be contacted.
    </Typography>    
       <div className={classes.contactForm}>
       <div className={classes.field}>

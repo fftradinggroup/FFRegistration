@@ -3,7 +3,7 @@ import Typography from '@material-ui/core/Typography';
 import React, { useState, useRef, useEffect } from "react";
 import ReactDOM from "react-dom";
 import firebase from "./../firebase";
-import Grid from './Grid'
+import CustomBtn from './CustomBtn';
 import './../App.css';
 import ConfirmationNumberIcon from '@material-ui/icons/ConfirmationNumber';
 import ConfirmationNumberOutlinedIcon from '@material-ui/icons/ConfirmationNumberOutlined';
@@ -67,8 +67,9 @@ const useStyles = makeStyles((theme) => ({
     const [competitions, setCompetions] = useState([]);
     const [loading, setLoading] = useState(false);
     const [paidFor, setPaidFor] = useState(false);
-    const [loaded, setLoaded] = useState(false)
-    const firebaseRef = firebase.firestore().collection("competitions");
+    const [loaded, setLoaded] = useState(false);
+    const [confmessage, setConfmessage] = useState(false);
+    const competitionRef = firebase.firestore().collection(process.env.REACT_APP_FIREBASE_COMPETITIONREF);
     let product = {
       name: "Competitions",
       description: "...",
@@ -79,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
     function getCompetitions(){
       setLoading(true);
       try{
-      firebaseRef.onSnapshot((querySnapshot) => {
+        competitionRef.onSnapshot((querySnapshot) => {
         //const items = [];
         const comp = querySnapshot.docs[0].data();
         /*querySnapshot.forEach((doc) => {
@@ -112,11 +113,8 @@ const useStyles = makeStyles((theme) => ({
           },
           onApprove: async (data,actions) => {
             const order = await actions.order.get();
+            createRegistration(order);
             setPaidFor(true);
-            console.log("order");
-            console.log(order);
-            //return actions.order.capture();
-            // redirect to site
           },
           onError: err => {
             console.log(err);
@@ -130,6 +128,34 @@ const useStyles = makeStyles((theme) => ({
         setLoaded(true); 
     }
   
+    const createRegistration = (reg) => {
+      const registrationRef = firebase.firestore().collection(process.env.REACT_APP_FIREBASE_REGISTRATIONREF);
+      registrationRef.add({
+        "order_id": reg["id"],
+        "intent": reg["intent"], 
+        "status": reg["status"], 
+        "create_time": reg["create_time"],
+        "email_address": reg["payer"].email,
+        "payer_id": reg["payer"].id,
+        "value": product.price,
+        "description": product.description,
+        "full_name": reg["name"].fullname,
+        "competition": product.name
+      })
+      .then(function(docRef) {
+        setConfmessage(true);
+                    // return orderid
+      })
+      .catch(function(error) {
+        registrationRef.add({
+          "error": error,
+        });
+        setConfmessage(false);
+        console.error("Error: ", error);
+      });
+    }
+
+
     useEffect(() => {
         // get competition data
         getCompetitions();
@@ -155,8 +181,13 @@ const useStyles = makeStyles((theme) => ({
         </div>
         {paidFor ? (
             <div>
-            <h1>Congrats! you have secured entry to the Financial Freedom Trading Competition</h1>
-            <Grid icon={<ConfirmationNumberIcon style={{fill: "#4360A6", height:"125", width:"125"}}/>}  title="Purchased" btnTitle="Go to Wealth Base" />
+           (confmessage) ? (
+              <h1>Congrats! you have secured entry to the Trading Competition.</h1>
+                  <CustomBtn  txt="Go to Competition" link={competitions.link} />
+                 ) : (
+                <h1>Something went wrong. Please try again.</h1>
+                <CustomBtn  txt="Try Again" onClick={setConfmessage(false)} />
+              )
             </div>
           ) : (
            (!loading && loaded) ?(
