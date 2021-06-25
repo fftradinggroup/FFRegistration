@@ -115,6 +115,7 @@ const useStyles = makeStyles((theme) => ({
             const order = await actions.order.get();
             createRegistration(order);
             setPaidFor(true);
+            return actions.order.get();
           },
           onError: err => {
             console.log(err);
