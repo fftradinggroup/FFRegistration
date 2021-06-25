@@ -98,6 +98,7 @@ const useStyles = makeStyles((theme) => ({
        // PayPal Script
         window.paypal
         .Buttons({
+          
           createOrder: (data, actions) => {
             return actions.order.create({
               purchase_units:[
@@ -115,7 +116,7 @@ const useStyles = makeStyles((theme) => ({
             const order = await actions.order.get();
             createRegistration(true, order);
             setPaidFor(true);
-            return actions.order.get();
+            return actions.order.capture();
           },
           onError: err => {
             createRegistration(false, err);
@@ -129,8 +130,8 @@ const useStyles = makeStyles((theme) => ({
       }
         setLoaded(true); 
     }
-  
-    const createRegistration = (status, reg) => {
+
+ function createRegistration (status, reg){
       console.log("registration =" , status );
       const registrationRef = firebase.firestore().collection(process.env.REACT_APP_FIREBASE_REGISTRATIONREF);
       (status) ? (
