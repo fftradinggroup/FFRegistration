@@ -197,7 +197,7 @@ const useStyles = makeStyles((theme) => ({
                  </Typography>
                  <span><ConfirmationNumberOutlinedIcon style={{fill: "#4360A6", height:"125", width:"125"}}></ConfirmationNumberOutlinedIcon></span>
                  <h2>Join for ${competitions.entry_fee}</h2>
-                 <h3>Start: - End:</h3>
+                 <h3>Duration: {new Date(competitions.start_time.seconds * 1000).toLocaleDateString("en-US")} - {new Date(competitions.end_time.seconds * 1000).toLocaleDateString("en-US")}</h3>
                  <div 
                      ref={paypalRef}
                      id="paypal-button-container"
