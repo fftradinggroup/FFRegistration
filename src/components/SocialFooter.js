@@ -44,9 +44,13 @@ const useStyles = makeStyles({
   textAlign: "left",
  },
  social:{
+  '& .MuiBottomNavigationAction-root.MuiBottomNavigationAction-iconOnly':{
+    paddingBottom:"16px",
+   },
   ['@media (max-width:780px)']: { 
     zIndex: "102",
     position: "relative",
+    height:"7%",
     }
 },
 })

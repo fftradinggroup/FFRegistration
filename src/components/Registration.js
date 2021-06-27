@@ -104,6 +104,7 @@ const useStyles = makeStyles((theme) => ({
             color:   'blue',
             shape:   'rect',
           },
+          intent:"CAPTURE",
           createOrder: (data, actions) => {
             return actions.order.create({
               purchase_units:[
@@ -210,8 +211,8 @@ const useStyles = makeStyles((theme) => ({
                  <h2>Join for ${competitions.entry_fee}</h2>
                  <h3>Duration: {new Date(competitions.start_time.seconds * 1000).toLocaleDateString("en-US")} - {new Date(competitions.end_time.seconds * 1000).toLocaleDateString("en-US")}</h3>
                  <div 
-                     ref={paypalRef}
-                     id="paypal-button-container"
+                    ref={paypalRef}
+                    id="paypal-button-container"
                      />
                 </div>
                   ) : (

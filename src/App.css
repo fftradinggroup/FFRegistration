@@ -43,6 +43,14 @@
   text-align: center;
 }
 
+div, h6{
+ background:#fff;
+}
+
+div#root, div.App, div#about, div#faqs, div#howitworks, div#contact, h2{
+  background:none;
+ }
+
 h6.content, h2.content{
   text-align:left;
 }
@@ -82,6 +90,7 @@ text-align: left;
     color: #4f25c8;
     font-weight:bold;
     text-decoration:none;
+    cursor:pointer;
 }
 
 .link:hover{

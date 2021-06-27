@@ -15,7 +15,6 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '15px',
     '& .MuiAccordion-rounded:hover':{
         backgroundColor: "#5f90bd",
-        color:"#ffffff!important",
       },
       '& .MuiAccordion-root.Mui-expanded': {
         margin: '0',

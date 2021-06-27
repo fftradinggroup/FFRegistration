@@ -16,7 +16,11 @@ const styles = makeStyles({
           bottom: "0",
           zIndex:"101",
           width: "100%",
-          borderTop: "solid 1px #000"
+          borderTop: "solid 1px #000",
+          height:"7%",
+         },
+         '& .MuiBottomNavigationAction-root.MuiBottomNavigationAction-iconOnly':{
+            paddingBottom:"16px",
          }
   },
 })

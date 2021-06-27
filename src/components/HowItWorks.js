@@ -36,7 +36,7 @@ const useStyles = makeStyles({
  },
  detailsItem:{
   fontWeight: "400",
- }
+ },
 })
   export default function HowItWorks() {
     const classes = useStyles();
